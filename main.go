@@ -10,10 +10,15 @@ import (
   "os/exec"
 )
 
+var (
+  DaraDir string = filepath.Join(os.Getenv("GOPATH"), "src/github.com/aidma-playground/setdev-env/data")
+)
+
+
+
 func main() {
   actor := interact.NewActor(os.Stdin, os.Stdout)
-  // ~/.userenv/ の作成
-  dir := filepath.Join(os.Getenv("HOME"), ".userenv")
+  dir :=
   // dirがなかったら
   if _, err := os.Stat(dir); err != nil {
     err := os.Mkdir(dir, os.ModePerm)
@@ -23,7 +28,7 @@ func main() {
     }
   }
 
-  fp := filepath.Join(os.Getenv("HOME"), ".userenv", "config.yml")
+  fp := filepath.Join(dir, "user.yml")
   if _, err := os.Stat(fp); err == nil {
     // 設定ファイルがある場合
     users := []User{}
